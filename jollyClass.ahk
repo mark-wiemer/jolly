@@ -15,7 +15,7 @@ class Jolly {
         ; Whether to print on PASS
         isLoud := false
         ; Whether to negate the matcher
-        isNot := false
+        isNegated := false
 
         ; Creates a new matcher. Private: Use `expect(value)` to create a matcher.
         __New(received) {
@@ -28,9 +28,9 @@ class Jolly {
         }
 
         ; Returns message describing this matcher. Pure. Private.
-        msg(pass, isNot, matcherName, received, expected, comment := "") {
+        msg(pass, isNegated, matcherName, received, expected, comment := "") {
             message := pass ? "PASS" : "FAIL"
-            message .= ": expect(" received ")." (isNot ? "not." : "") matcherName "(" expected ")"
+            message .= ": expect(" received ")." (isNegated ? "not." : "") matcherName "(" expected ")"
             message .= (comment ? " `; " comment : "")
             return message
         }
@@ -51,13 +51,13 @@ class Jolly {
         loud[] => (this.isLoud := true, this)
 
         ; Negates the matcher. Returns this. Multiple calls cancel each other out.
-        not[] => (this.isNot := !this.isNot, this)
+        not[] => (this.isNegated := !this.isNegated, this)
 
         ; Expects two values to have == equality.
         toBe(expected) {
             pass := (this.received == expected) 
-            pass := this.isNot ? !pass : pass
-            message := this.msg(pass, this.isNot, "toBe", this.received, expected, "== equality")
+            pass := this.isNegated ? !pass : pass
+            message := this.msg(pass, this.isNegated, "toBe", this.received, expected, "== equality")
             this.results(pass, message, this.isLoud)
         }
     }
