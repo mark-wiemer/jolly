@@ -26,7 +26,7 @@ Jolly uses matchers to compare two values. The values can be of any type. The `t
 
 ```AutoHotkey
 expect("Jolly").toBe("Jolly") ; Does not log anything
-expect(1).toBe(2) ; Logs "FAIL: expect(1).toBe(2) ; == equality"
+expect(2 + 2).toBe(3) ; Logs "FAIL: expect(1).toBe(2) ; == equality"
 
 ; Logs "PASS: expect(18).toBe(18) ; == equality":
 expect(StrLen("Testing with Jolly")).loud.toBe(StrLen("suprisingly easy!!"))
