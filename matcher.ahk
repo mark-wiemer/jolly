@@ -3,14 +3,14 @@
 
 ; Handles value comparison. Currently also handles results.
 class Matcher {
-    ; The received value for the matcher
-    received := ""
     ; Whether to print on PASS
     isLoud := false
     ; Whether to negate the matcher
     isNegated := false
+    ; The received value for the matcher
+    received := ""
 
-    ; Creates a new matcher. Private: Use `expect(value)` to create a matcher.
+    ; Creates a new matcher. Private: Use `Jolly.Runner.expect`
     __New(received) {
         this.received := received
     }
