@@ -25,6 +25,7 @@ Jolly has no external dependencies. To use it, just add `#Include path/to/jolly.
 Jolly uses matchers to compare two values. The values can be of any type. The `toBe` matcher compares values using the `==` operator. Matchers are quiet by default and only log if they fail. "Logging" means "sending a string to the debugger". Loud matchers log even when they pass. Negate matchers with the `not` modifier. Multiple negations cancel each other out.
 
 ```AutoHotkey
+; TODO out of date, requires runner object now
 expect("Jolly").toBe("Jolly") ; Does not log anything
 expect(2 + 2).toBe(3) ; Logs "FAIL: expect(1).toBe(2) ; == equality"
 

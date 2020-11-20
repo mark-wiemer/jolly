@@ -1,6 +1,7 @@
 #Requires AutoHotkey v2.0-a ; a122
 #SingleInstance Force
 
+; TODO make relevant again
 ; +------+
 ; | DEMO |
 ; +------+
