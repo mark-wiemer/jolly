@@ -26,7 +26,10 @@ class Matcher {
     }
 
     ; Negates the matcher. Returns this. Multiple calls cancel each other out.
-    not[] => (this.isNegated := !this.isNegated, this)
+    not() {
+       this.isNegated := !this.isNegated
+       return this
+    }
 
     ; Expects two values to have == equality.
     toBe(expected) {

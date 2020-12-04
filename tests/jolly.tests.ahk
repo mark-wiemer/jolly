@@ -18,11 +18,11 @@ j.it("should fail even when first expect passes", () => (
 ))
 
 j.it("should pass with negated expect", () => (
-    j.expect("to be or").not.toBe(", that is the question")
+    j.expect("to be, or").not().toBe(", that is the question")
 ))
 
 j.it("should fail with negated expect", () => (
-    j.expect(1).not.toBe(1)
+    j.expect(1).not().toBe(1)
 ))
 
 try {
