@@ -4,8 +4,7 @@
 ; Runs tests
 class Runner {
     currentIt := ""
-    its := []
-    matchers := []
+    itResults := []
 
     expect(value) {
         if (!this.currentIt) {
@@ -18,11 +17,9 @@ class Runner {
     }
 
     it(name, callback) {
-        newIt := Jolly._It.New(name)
-        this.currentIt := newIt
-        this.its.push(newIt)
+        this.currentIt := Jolly.It.New()
         callback.Call()
-        this.currentIt.evaluate()
+        this.itResults.push(this.currentIt.evaluate(name))
         this.currentIt := ""
     }
 
@@ -36,23 +33,31 @@ class Runner {
     ;         }
     ;     }
     ; }
-            }
-        }
-    }
 }
 
-class _It {
+class ItResult {
+    ; If passed, then -1, else 1-based index of failing matcher
     failedIndex := -1
-    matchers := []
+    ; If passed, then empty string, else matcher message
+    failedMessage := ""
     name := ""
     passed := ""
 
-    __New(name) {
+    __New(name, passed, failedMessage := "", failedIndex := -1) {
         this.name := name
+        this.passed := passed
+        this.failedMessage := failedMessage
+        this.failedIndex := failedIndex
     }
+}
 
-    ; Execute the callback and update state of this
-    evaluate() {
+class It {
+    failedIndex := -1
+    matchers := []
+    passed := ""
+
+    ; Returns result of this test
+    evaluate(name := "") {
         this.passed := true
         for (index, matcher in this.matchers) {
             if (!matcher.passed) {
@@ -61,5 +66,7 @@ class _It {
                 break
             }
         }
+        failedMessage := this.passed ? "" : this.matchers[this.failedIndex].message
+        return Jolly.ItResult.New(name, this.passed, failedMessage, this.failedIndex)
     }
 }

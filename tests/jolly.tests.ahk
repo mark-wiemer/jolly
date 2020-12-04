@@ -35,6 +35,21 @@ try {
 ; OutputDebug("should log 3 failed its:")
 ; j.report()
 
-x := 1 ; just for debug breakpoint insertion
+j.it("should pass with running in correct state after running tests", () => (
+    k := Jolly.Runner.New(),
+    k.it("should be a test", () => (
+        k.expect(1).toBe(0)
+    )),
+    firstItResult := k.itResults[1],
+    j.expect(k.itResults.length).toBe(1)
+    j.expect(firstItResult.failedIndex).toBe(1)
+    j.expect(firstItResult.failedMessage).toBe("expect(1).toBe(0) `; == equality")
+    j.expect(firstItResult.name).toBe("should be a test")
+    j.expect(firstItResult.passed).toBe(false)
+))
+
+; just for breakpoint insertion
+x := 1
+OutputDebug(":)")
 
 #Include ../jolly.ahk
