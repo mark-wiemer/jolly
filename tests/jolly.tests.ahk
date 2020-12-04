@@ -32,9 +32,9 @@ try {
     ; nothing went wrong, don't log anything
 }
 
-OutputDebug("should log 3 failed its:")
-j.report()
+; OutputDebug("should log 3 failed its:")
+; j.report()
 
-OutputDebug("😊")
+x := 1 ; just for debug breakpoint insertion
 
 #Include ../jolly.ahk
