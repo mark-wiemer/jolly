@@ -27,7 +27,7 @@ j.it("should fail with negated expect", () => (
 
 try {
     j.expect("expect outside of an it").toBe("throws an exception")
-    OutputDebug("FAIL: expect outside of it did not throw exception")
+    OutputDebug("ERROR: expect outside of it did not throw exception")
 } catch {
     ; nothing went wrong, don't log anything
 }
