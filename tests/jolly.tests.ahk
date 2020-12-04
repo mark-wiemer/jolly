@@ -3,16 +3,16 @@
 
 j := Jolly.Runner.New()
 
-j.it("should fail only once with two bad expects", () => (
+j.it("should fail only once with two failed expects", () => (
     j.expect(2 + 3).toBe(4)
     j.expect(2 + 2).toBe(3)
 ))
 
-j.it("should pass and not report", () => (
+j.it("should pass and not be reported", () => (
     j.expect(1 + 1).toBe(2)
 ))
 
-j.it("should fail even when first expect passes", () => (
+j.it("should fail on second expect when first expect passes", () => (
     j.expect(1 + 1).toBe(2)
     j.expect(3).toBe(5)
 ))
@@ -21,18 +21,19 @@ j.it("should pass with negated expect", () => (
     j.expect("to be, or").not().toBe(", that is the question")
 ))
 
-j.it("should fail with negated expect", () => (
+j.it("should fail with failed negated expect", () => (
     j.expect(1).not().toBe(1)
 ))
 
+; Calling expect outside of an it should throw an exception
 try {
-    j.expect("expect outside of an it").toBe("throws an exception")
+    j.expect(true).toBe(false)
     OutputDebug("ERROR: expect outside of it did not throw exception")
 } catch {
     ; nothing went wrong, don't log anything
 }
 
-j.it("should pass with running in correct state after running tests", () => (
+j.it("should pass with runner in correct state after running tests", () => (
     k := Jolly.Runner.New(),
     k.it("should be a test", () => (
         k.expect(1).toBe(0)
@@ -45,7 +46,8 @@ j.it("should pass with running in correct state after running tests", () => (
     j.expect(firstItResult.passed).toBe(false)
 ))
 
-OutputDebug("Should report 3 failed its:")
+OutputDebug("Should report 3 failed its, each with exactly one failure.")
+OutputDebug("It names should start with 'should fail':")
 j.report()
 
 ; just for breakpoint insertion
