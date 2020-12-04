@@ -32,9 +32,6 @@ try {
     ; nothing went wrong, don't log anything
 }
 
-; OutputDebug("should log 3 failed its:")
-; j.report()
-
 j.it("should pass with running in correct state after running tests", () => (
     k := Jolly.Runner.New(),
     k.it("should be a test", () => (
@@ -47,6 +44,9 @@ j.it("should pass with running in correct state after running tests", () => (
     j.expect(firstItResult.name).toBe("should be a test")
     j.expect(firstItResult.passed).toBe(false)
 ))
+
+OutputDebug("Should report 3 failed its:")
+j.report()
 
 ; just for breakpoint insertion
 x := 1

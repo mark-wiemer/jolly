@@ -4,5 +4,6 @@
 ; All Jolly functionality, namespaced within a class
 class Jolly {
     #Include matcher.ahk
+    #Include reporter.ahk
     #Include runner.ahk
 }

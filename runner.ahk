@@ -23,16 +23,10 @@ class Runner {
         this.currentIt := ""
     }
 
-    ; TODO move logic to own class, keeping this in interface is nice though
     ; Reports results, currently to OutputDebug
-    ; report() {
-    ;     for (it in this.its) {
-    ;         if (!it.passed) {
-    ;             OutputDebug("FAIL: " it.name)
-    ;             OutputDebug("    " it.matchers[it.failedIndex].message)
-    ;         }
-    ;     }
-    ; }
+    report() {
+        Jolly.Reporter.report(this.itResults)
+    }
 }
 
 class ItResult {
