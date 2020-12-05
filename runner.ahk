@@ -25,7 +25,7 @@ class Runner {
 
     ; Reports results, currently to OutputDebug
     report() {
-        Jolly.Reporter.report(this.itResults)
+        Jolly.Reporter.report(Jolly.RunnerResults.New(this.itResults))
     }
 }
 

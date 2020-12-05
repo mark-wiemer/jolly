@@ -7,4 +7,5 @@ class Jolly {
     #Include matcher.ahk
     #Include reporter.ahk
     #Include runner.ahk
+    #Include runnerResults.ahk
 }
